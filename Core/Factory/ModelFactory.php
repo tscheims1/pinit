@@ -9,6 +9,8 @@
 namespace Core\Factory;
 
 
+use Core\Factory\Exception\FactoryException;
+
 /**
  * Convert arrays to Model Collections
  * Convert Model Collections into arrays
@@ -25,10 +27,9 @@ class ModelFactory extends BaseFactory
 		$array = [];
 		foreach($collection as $ele)
 		{
-			if(is_subclass_of($ele, '\\Core\\Model\\BaseModel'))
-			{
-				$array[] = $ele->toArray();
-			}
+			if(!is_subclass_of($ele, '\\Core\\Model\\BaseModel'))
+				throw new FactoryException('Type isn\'t Subclass of \\Core\\Model\\BaseModel');
+			$array[] = $ele->toArray();
 		}
 		return $array;
 	}
@@ -45,9 +46,12 @@ class ModelFactory extends BaseFactory
 		{
 			
 			if(!isset($ele['type']))
-				continue;
+				throw new FactoryException('Type of Object not defined');
 			
 			$fullClassname = "\\".str_replace(".", "\\",$ele['type']);
+			
+			if(!is_subclass_of($fullClassname, '\\Core\\Model\BaseModel'))
+				throw new FactoryException('Type isn\'t Subclass of \\Core\\Model\\BaseModel');
 			$collection[] = new $fullClassname($ele);
 		}
 		return $collection;

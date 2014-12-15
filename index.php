@@ -14,6 +14,7 @@ require_once 'Core/Tag/ITag.php';
 require_once 'Core/Tag/Tag.php';
 require_once 'Core/Factory/BaseFactory.php';
 require_once 'Core/Factory/ModelFactory.php';
+require_once 'Core/Factory/Exception/FactoryException.php';
 
 $factory = \Core\Factory\ModelFactory::getInstance();
 
