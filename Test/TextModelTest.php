@@ -30,6 +30,7 @@ class TextModelTest extends PHPUnit_Framework_TestCase
 					'children' => null,
 					'content' => null,
 					'tags'	  => [],
+					'type'	  => 'Model.TextModel',
 					];
 		
 		$this->assertEquals($array,$textModel->toArray());
@@ -41,19 +42,21 @@ class TextModelTest extends PHPUnit_Framework_TestCase
 			'_id' 		=> 123456789,
 			'parents' 	=> [1,2,3,],
 			'children' 	=> [2,3,4,],
-			'tags'		=> [['name' => 'abc'],['name' => 'abc']],
+			'tags'		=> [['name' => 'abc'],['name' => 'abc']],	
 		];
 		
 		$textModel = new TextModel($array);
+		$array2 =  $array;
 		
-		$this->assertEquals($array,$textModel->toArray());
+		$array2['type'] = 'Model.TextModel';
+		$this->assertEquals($array2,$textModel->toArray());
 		
 		
 		
 		$textModel = new TextModel();
 		$textModel->toObject($array);
 		
-		$this->assertEquals($array,$textModel->toArray());
+		$this->assertEquals($array2,$textModel->toArray());
 	}
 	/**
 	 * @expectedException PHPUnit_Framework_Error
@@ -81,11 +84,14 @@ class TextModelTest extends PHPUnit_Framework_TestCase
 					];
 		
 		$textModel = new TextModel(['names' => 'wrong']);
-		$this->assertEquals($testArray,$textModel->toArray());
+		
+		$testArray2 = $testArray;
+		$testArray2['type'] = 'Model.TextModel';
+		$this->assertEquals($testArray2,$textModel->toArray());
 		
 		$textModel = new TextModel();
 		$textModel->toObject(['names' => 'wrong']);
-		$this->assertEquals($testArray,$textModel->toArray());
+		$this->assertEquals($testArray2,$textModel->toArray());
 	}
 }
 ?>

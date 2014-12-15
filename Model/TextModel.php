@@ -20,6 +20,8 @@ class TextModel extends BaseModel
 	 */
 	protected $content;
 	
+	protected $type = 'Model.TextModel';
+	
 	/**
 	 * @param $data array set properties
 	 */

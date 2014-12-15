@@ -21,6 +21,11 @@ abstract class BaseModel implements IModel
 	 */
 	protected $id;
 	
+	/**
+	 * Model type
+	 * @var string
+	 */
+	protected $type = null;
 	
 	/**
 	 * All children relationships
@@ -61,6 +66,7 @@ abstract class BaseModel implements IModel
 				'children' 	=> $this->children,
 				'parents' 	=> $this->parents,
 				'tags' 		=> $tags,
+				'type'		=> $this->type,
 				];
 	}
 	
@@ -78,7 +84,6 @@ abstract class BaseModel implements IModel
 		$this->id 		= isset($data['_id'])?$data['_id']:null;
 		$this->parents 	= isset($data['parents'])?$data['parents']:null;
 		$this->children = isset($data['children'])?$data['children']:null;
-		
 	}
 }
 ?>
