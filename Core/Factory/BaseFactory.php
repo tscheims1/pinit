@@ -23,6 +23,7 @@ abstract class BaseFactory
 	protected static $instance = null;
 	private function __clone(){}
 	private function __wakeup(){}
+	private function __construct(){}
 	
 	
 	/**
