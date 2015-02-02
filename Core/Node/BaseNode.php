@@ -20,6 +20,24 @@ abstract class BaseNode
 	protected $model;
 	
 	/**
+	 * a collection of connected nodes
+	 * @var array
+	 */
+	protected $connectedNodes;
+	
+	/**
+	 * parentNode
+	 * @var \Core\Node\BaseNode
+	 */
+	protected $parentNode;
+	
+	/**
+	 * children Nodes
+	 * @var array
+	 */
+	protected $childNodes;
+	
+	/**
 	 * convert the NodeContent in a JsonObject
 	 * @return string
 	 */
