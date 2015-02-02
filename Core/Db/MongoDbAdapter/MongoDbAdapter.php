@@ -66,7 +66,7 @@ class MongoDbAdapter extends \Core\Db\BaseDbAdapter
 		$documentArray = array();
 		foreach($cursor as $document)
 		{
-				$documentArray[] = $document;
+			$documentArray[] = $document;
 		}
 		return $documentArray;
 	}
