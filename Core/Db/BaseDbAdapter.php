@@ -14,25 +14,6 @@ namespace Core\Db;
 abstract class BaseDbAdapter
 {
 	/**
-	 * instance of the adapter
-	 * @var \Core\Db\BaseDbAdapter
-	 */
-	protected static $instance = null;
-	
-	/**
-	 * Singleton Pattern
-	 */
-	public static function getInstance()
-	{
-		if(self::$instance === null)
-			self::$instance = new static();
-		return self::$instance;
-	}
-	private function __construct(){}
-	private function __clone(){}
-	private function __wakeup(){}
-	
-	/**
 	 * Database Setup 
 	 * @param array $config the database Configuaration e.g: db name, pass,ect
 	 */

@@ -22,20 +22,11 @@ use Core\Db\MongoDbAdapter\MongoDbAdapter;
 
 class MongoDbAdapterTest extends PHPUnit_Framework_TestCase
 {
-	
-	public function testIsSingletonAdapter()
-	{
-		
-		$mongoInstance = \Core\Db\MongoDbAdapter\MongoDbAdapter::getInstance();
-		$mongoInstance2 = \Core\Db\MongoDbAdapter\MongoDbAdapter::getInstance();
-		
-		$this->assertSame($mongoInstance,$mongoInstance2);
-		$this->assertNotSame($mongoInstance,null);
 
-	}
 	public function testInsertAndFindInMongoDb()
 	{
-		$mongoInstance = MongoDbAdapter::getInstance();
+		
+		$mongoInstance = new MongoDbAdapter();
 		$mongoInstance->setUp(['db' => 'test']);
 		
 				
