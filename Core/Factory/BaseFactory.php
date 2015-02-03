@@ -11,7 +11,6 @@ namespace Core\Factory;
 
 /**
  * A baseFactory: 
- * Implements Singleton Pattern
  * 
  */
 abstract class BaseFactory
@@ -20,7 +19,7 @@ abstract class BaseFactory
 	 * protected instance for singleton pattern.
 	 * @var BaseFactory
 	 */
-	protected static $instance = null;
+	protected static $instances =[];
 	private function __clone(){}
 	private function __wakeup(){}
 	private function __construct(){}
@@ -32,9 +31,10 @@ abstract class BaseFactory
 	 */
 	public static function getInstance()
 	{
-		if(self::$instance === null)
-			self::$instance = new static();
-		return self::$instance;
+		$class = get_called_class();
+		if(!isset(self::$instances[$class]))
+			self::$instances[$class] = new $class();
+		return self::$instances[$class];
 	}
 	/**
 	 * converts an array of Models into an database friedly array

@@ -47,5 +47,13 @@ abstract class BaseNode
 	{
 		$this->model = $model;	
 	}
+	/**
+	 * getter method for the model
+	 * @return \Core\Model\BaseModel
+	 */
+	public function getModel()
+	{
+		return $this->model;
+	}
 }
 ?>

@@ -6,19 +6,20 @@
  * @copyright __TEAMNAME__ 2014
  * @version 1.0
  */
+
 namespace Core\Factory;
 
 
 use Core\Factory\Exception\FactoryException;
 
 /**
- * Convert arrays to Model Collections
- * Convert Model Collections into arrays
+ * Convert arrays to Node Collections
+ * Convert Node Collections into arrays
  */
-class ModelFactory extends BaseFactory
-{	
+class NodeFactory extends BaseFactory
+{
 	/**
-	 * converts an array of Models into an database friedly array
+	 * converts an array of Nodes into an database friedly array
 	 * @param array $collection
 	 * @return array
 	 */
@@ -27,14 +28,15 @@ class ModelFactory extends BaseFactory
 		$array = [];
 		foreach($collection as $ele)
 		{
-			if(!is_subclass_of($ele, '\\Core\\Model\\BaseModel'))
-				throw new FactoryException('Type isn\'t Subclass of \\Core\\Model\\BaseModel');
-			$array[] = $ele->toArray();
+			if(!is_subclass_of($ele, '\\Core\\Node\\BaseNode'))
+				throw new FactoryException('Type isn\'t Subclass of \\Core\\Node\\BaseNode');
+			
+			$array[] = $ele->getModel()->toArray();
 		}
 		return $array;
 	}
 	/**
-	 * Converts an databasefriedly array into a Model Collection
+	 * Converts an databasefriedly array into a Node Collection
 	 * @param array $array
 	 * @return array
 	 */
@@ -52,8 +54,15 @@ class ModelFactory extends BaseFactory
 			
 			if(!is_subclass_of($fullClassname, '\\Core\\Model\BaseModel'))
 				throw new FactoryException('Type isn\'t Subclass of \\Core\\Model\\BaseModel');
-			$collection[] = new $fullClassname($ele);
+			$model = new $fullClassname($ele);
+			
+			$fullNodeName = str_replace('Model', 'Node',$fullClassname);
+			if(!is_subclass_of($fullNodeName, '\\Core\\Node\\BaseNode'))
+				throw new FactoryException('Node isn\'t Subclass of \\Core\\Node\\BaseNode');
+			
+			$collection[] =  new $fullNodeName($model);
 		}
 		return $collection;
 	}	
 }
+
