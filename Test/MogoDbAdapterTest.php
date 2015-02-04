@@ -70,7 +70,7 @@ class MongoDbAdapterTest extends PHPUnit_Framework_TestCase
 			$this->assertEquals($array,$collection);
 			
 			//tidy up the database
-			$db->test->remove();
+			$db->node->remove();
 	}
 	public function testUpdateAndFindRecord()
 	{
