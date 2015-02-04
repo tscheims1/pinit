@@ -70,6 +70,45 @@ class MongoDbAdapter extends \Core\Db\BaseDbAdapter
 		}
 		return $documentArray;
 	}
+	/**
+	 * read a single record
+	 * @param array $dataQuery an array with data and the databaseQuery
+	 * -table: TableName
+	 * -condition: condition for get first Record of the dataSet
+	 * @return mixed return array of the Record or null
+	 */
+	public function findRecord(array $dataQuery)
+	{
+		$table = isset($dataQuery['table'])?$dataQuery['table']:null;
+		$condition = isset($dataQuery['condition'])?$dataQuery['condition']:null;
+		
+		$dbTable = $this->db->{$table};
+		
+		$cursor = $dbTable->find($condition);
+		if($cursor->count() > 0)
+		{
+			$cursor->next();
+			return $cursor->current();
+		}
+		return null;
+	}
+	/**
+	 * update a specific Record
+	 * @param array $dataQuery an array with  data and the database Query
+	 * - table: TableName
+	 * - condition: condition for update
+	 * - data data to update
+	 */
+	public function updateRecord(array $dataQuery)
+	{
+		$table = isset($dataQuery['table'])?$dataQuery['table']:null;
+		$condition = isset($dataQuery['condition'])?$dataQuery['condition']:null;
+		$data = isset($dataQuery['data'])?$dataQuery['data']:null;
+		
+		$dbTable = $this->db->{$table};
+		return $dbTable->update($condition,['$set' => $data]);
+	}
+	
 	
 }
 ?>

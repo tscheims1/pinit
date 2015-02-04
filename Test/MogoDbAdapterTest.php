@@ -70,7 +70,60 @@ class MongoDbAdapterTest extends PHPUnit_Framework_TestCase
 			$this->assertEquals($array,$collection);
 			
 			//tidy up the database
-			$db->node->remove();
+			$db->test->remove();
+	}
+	public function testUpdateAndFindRecord()
+	{
+		/*
+		 * tidy up the database
+		 */
+		$mongo = new \MongoClient();
+		$db = $mongo->test;
+		$db->node->remove();
+		
+		$array = [	
+				'children' => null,
+				'parents' => null,
+				'type' => 'Model.TextModel', 
+				'_id' => new \MongoId(),
+				'tags' => [['name' => 'haus'],['name' => 'balkon']],
+				'content' => 'text text text'];
+		$textModel = new \Model\TextModel($array);
+		$db->node->insert($textModel->toArray());
+		
+		$cursor = $db->node->find(['tags' => ['name' => 'haus']]);
+		$ele = [];
+		foreach($cursor as $doc)
+		{
+			$ele[] = $doc;
+		}
+		
+		$mongoDbAdapter = new MongoDbAdapter();
+		$mongoDbAdapter->setUp(['db' => 'test']);
+		$ele2 = $mongoDbAdapter->findRecord(['condition' => 
+										['_id' => $ele[0]['_id']],
+									 'table' => 'node',
+									 ]);			
+		$this->assertEquals($ele[0],$ele2);
+		
+		$ele2['content'] = 'updated...';
+		
+		$mongoDbAdapter->updateRecord(
+									['condition' => ['_id' => $ele2['_id']],
+									'table' => 'node',
+									'data' => ['content' => $ele2['content']]]);
+									
+		$ele3 = $mongoDbAdapter->findRecord(['condition' => 
+										['_id' => $ele[0]['_id']],
+									 'table' => 'node',
+									 ]);
+		$this->assertEquals($ele3,$ele2);
+		$this->assertNotEquals($ele3,null);
+									
+		
+		
+		
+		
 	}
 	
 }

@@ -13,15 +13,16 @@ abstract class BaseContentHandler
 {
 	/**
 	 * Method for get the contentHandler specific data
-	 * @param array $query Query to filter the datasource
+	 * @param array $id of the Model
 	 * @return array get the contentHandler specific datasource
 	 */
-	abstract public function getContent(array $query);
+	abstract public function getContent($id);
 	
 	/**
+	 * @param int $id id of the Model
 	 * @param array $data the data for inserting into the ContentHandler 
 	 * specific datasource
 	 */
-	abstract public function setContent(array $data);
+	abstract public function setContent($id,array $data);
 }
 ?>

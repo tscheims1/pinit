@@ -30,5 +30,22 @@ abstract class BaseDbAdapter
 	 * @param array $query the databaseQuery
 	 */
 	public abstract function findCollection(array $query);
+	
+	/**
+	 * update a specific Record
+	 * @param array $dataQuery an array with  data and the database Query
+	 * - table: TableName
+	 * - condition: condition for update
+	 * - data data to update
+	 */
+	public abstract function updateRecord(array $dataQuery);
+	
+	/**
+	 * read a single record
+	 * @param array $dataQuery an array with data and the databaseQuery
+	 * -table: TableName
+	 * -condition: condition for get first Record of the dataSet
+	 */
+	public abstract function findRecord(array $dataQuery);
 }
 ?>

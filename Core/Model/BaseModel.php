@@ -55,7 +55,7 @@ abstract class BaseModel implements IModel
 	 * Handler for write Model's Content
 	 * @var \Core\ContentHandler\BaseContentHandler
 	 */
-	protected $deleteHandler;
+	protected $deleteContentHandler;
 	
 	/**
 	 * All Tags
@@ -107,7 +107,7 @@ abstract class BaseModel implements IModel
 	 */
 	public function getContent()
 	{
-		return $this->readHanlder->getContent();
+		return $this->readContentHanlder->getContent();
 	}
 	/**
 	 * @param array $array update the node Content
@@ -115,7 +115,7 @@ abstract class BaseModel implements IModel
 	 */
 	public function setContent(array $data)
 	{
-		return $this->writeHandler->setContent();
+		return $this->writeContentHandler->setContent();
 	}
 }
 ?>
