@@ -40,6 +40,24 @@ abstract class BaseModel implements IModel
 	protected $parents = null;
 	
 	/**
+	 * Handler for read Model's Content
+	 * @var \Core\ContentHandler\BaseContentHandler
+	 */
+	protected $readContentHandler;
+	
+	/**
+	 * Handler for write Model's Content
+	 * @var \Core\ContentHandler\BaseContentHandler
+	 */
+	protected $writeContentHandler;
+	
+	/**
+	 * Handler for write Model's Content
+	 * @var \Core\ContentHandler\BaseContentHandler
+	 */
+	protected $deleteHandler;
+	
+	/**
 	 * All Tags
 	 * @var array
 	 */
@@ -80,10 +98,24 @@ abstract class BaseModel implements IModel
 			{
 				$this->tags[] = new Tag($tag);
 			}
-		
 		$this->id 		= isset($data['_id'])?$data['_id']:null;
 		$this->parents 	= isset($data['parents'])?$data['parents']:null;
 		$this->children = isset($data['children'])?$data['children']:null;
+	}
+	/**
+	 * @return array the content of the Model
+	 */
+	public function getContent()
+	{
+		return $this->readHanlder->getContent();
+	}
+	/**
+	 * @param array $array update the node Content
+	 * @return array response
+	 */
+	public function setContent(array $data)
+	{
+		return $this->writeHandler->setContent();
 	}
 }
 ?>

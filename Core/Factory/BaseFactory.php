@@ -10,13 +10,13 @@ namespace Core\Factory;
 
 
 /**
- * A baseFactory: 
+ * A baseFactory
  * 
  */
 abstract class BaseFactory
 {
 	/**
-	 * protected instance for singleton pattern.
+	 * protected instances for singleton pattern.
 	 * @var BaseFactory
 	 */
 	protected static $instances =[];
@@ -26,7 +26,8 @@ abstract class BaseFactory
 	
 	
 	/**
-	 * Static Method for getting the instance (Singleton Pattern)
+	 * Static Method for getting the sub class specific 
+	 * instance (Singleton Pattern)
 	 * @return BaseFactory
 	 */
 	public static function getInstance()

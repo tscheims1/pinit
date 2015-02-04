@@ -6,12 +6,12 @@
  * @copyright __TEAMNAME__ 2014
  * @version 1.0
  */
-namespace Core\Factory\Exception;
+namespace Core\ContentHandler\Exception;
 
 /**
- * Custom Exception for the Facory classes
+ * Custom Exception for the ContentHalder classes
  */
-class FactoryException extends \Exception
+class ContentHandlerException extends \Exception
 {
 	public function __construct($message, $code = 0, Exception $previous = null) 
 	{

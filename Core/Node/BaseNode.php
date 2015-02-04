@@ -55,5 +55,24 @@ abstract class BaseNode
 	{
 		return $this->model;
 	}
+	/**
+	 * method to update the specific node
+	 * @param array $data content to insert 
+	 * @return array $response 
+	 */
+	 public function setContent(array $data)
+	 {
+	 	return $this->model->setContent($data);
+	 }
+	 
+	 /**
+	 * method to get the specific node data 
+	 * @return array $data 
+	 */
+	 public function getContent()
+	 {
+	 	return $this->model->getContent();
+	 }
+
 }
 ?>
