@@ -39,7 +39,7 @@ class MongoDbContentHandler
 	{
 		return $this->adapter->findRecord(
 			['table' => 'node',
-			'condition' => ['_id' => $query]]);
+			'condition' => ['_id' => $id]]);
 	}
 	
 	/**
