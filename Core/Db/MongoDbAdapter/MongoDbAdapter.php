@@ -108,6 +108,24 @@ class MongoDbAdapter extends \Core\Db\BaseDbAdapter
 		$dbTable = $this->db->{$table};
 		return $dbTable->update($condition,['$set' => $data]);
 	}
+	/**
+	 * insert the model in the database
+	 * @param array $data data array of the model
+	 * @return bool true if was successful 
+	 */
+	public function insertModel(array $data)
+	{
+		return $this->db->node->insert($data);
+	}
+	/**
+	 * remove a model from the database
+	 * @param int $id the id of the model
+	 * @return bool true if it was successful
+	 */
+	public function deleteModel($id)
+	{
+		return $this->db->node->remove(['_id' => $id]);
+	}
 	
 	
 }

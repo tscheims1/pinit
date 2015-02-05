@@ -26,10 +26,10 @@ abstract class BaseNode
 	protected $connectedNodes;
 	
 	/**
-	 * parentNode
+	 * parentNodes
 	 * @var \Core\Node\BaseNode
 	 */
-	protected $parentNode;
+	protected $parentNodes;
 	
 	/**
 	 * children Nodes
@@ -73,6 +73,5 @@ abstract class BaseNode
 	 {
 	 	return $this->model->getContent();
 	 }
-
 }
 ?>

@@ -117,5 +117,9 @@ abstract class BaseModel implements IModel
 	{
 		return $this->writeContentHandler->setContent($this->_id,['content' => $this->content]);
 	}
+	public function getId()
+	{
+		return $this->_id;
+	}
 }
 ?>

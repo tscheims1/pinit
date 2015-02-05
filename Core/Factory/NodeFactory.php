@@ -63,6 +63,28 @@ class NodeFactory extends BaseFactory
 			$collection[] =  new $fullNodeName($model);
 		}
 		return $collection;
-	}	
+	}
+	/**
+	 * insert a node in the database
+	 * @param \Core\Node\BaseNode $node the note to insert
+	 * @param \Core\Db\BaseAdapter $adapter dbAdapter
+	 * @return bool true if it was successful
+	 */
+	public function insertNode(\Core\Node\BaseNode $node,\Core\Db\BaseAdapter $dbAdapter)
+	{
+		$model = $node->getModel();
+		return $dbAdapter->insertModel($model->toArray());
+	}
+	
+	/**
+	 * delete a node from the database
+	 * @param \Core\Node\BaseNode $node the note to insert
+	 * @param \Core\Db\BaseAdapter $adapter dbAdapter
+	 * @return bool true if it was successful
+	 */
+	public function deleteNode(\Core\Node\BaseNode $node,\Core\Db\BaseAdapter $dbAdapter)
+	{
+		$model = $node->getModel();
+		return $dbAdapter->deleteModel($model->getId());
+	}		
 }
-

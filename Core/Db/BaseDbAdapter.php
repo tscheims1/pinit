@@ -47,5 +47,19 @@ abstract class BaseDbAdapter
 	 * -condition: condition for get first Record of the dataSet
 	 */
 	public abstract function findRecord(array $dataQuery);
+	
+	/**
+	 * store a model in the database
+	 * @param array $data the data-array of the model
+	 * @return bool true if it was successful
+	 */
+	public abstract function insertModel(array $data);
+	
+	/**
+	 * delete a model from the database
+	 * @param the id of the model
+	 * @return bool true if it was successful
+	 */
+	public abstract function deleteModel($id);
 }
 ?>

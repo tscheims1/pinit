@@ -17,4 +17,5 @@ interface IModel
 	public function __construct(array $data = null);
 	public function toArray();
 	public function toObject(array $data);
+	public function getId();
 }
