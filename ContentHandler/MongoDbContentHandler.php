@@ -27,8 +27,8 @@ class MongoDbContentHandler
 	public function __construct(array $config)
 	{
 		
-		$this->adapter = new MongoDbAdapter();
-		$this->adpater->setUp($config);
+		$this->adapter = new \Core\Db\MongoDbAdapter\MongoDbAdapter();
+		$this->adapter->setUp($config);
 	}
 	/**
 	 * get a specific model from the database

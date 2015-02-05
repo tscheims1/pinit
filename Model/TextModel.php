@@ -22,6 +22,13 @@ class TextModel extends BaseModel
 	
 	protected $type = 'Model.TextModel';
 	
+	public function __construct(array $data =null){
+		parent::__construct($data);
+		$this->writeContentHandler = new \ContentHandler\MongoDbContentHandler(['db' => 'test']);
+		$this->readContentHandler = new \ContentHandler\MongoDbContentHandler(['db' => 'test']);
+	}
+	
+	
 	/**
 	 * @param $data array set properties
 	 */

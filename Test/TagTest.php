@@ -9,8 +9,7 @@
  
 $path = dirname(__DIR__);
 
-require_once $path.'/Core/Tag/ITag.php';
-require_once $path.'/Core/Tag/Tag.php';
+require_once $path.'/SetUp/functions.php';
  
 
 /**

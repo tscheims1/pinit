@@ -107,7 +107,7 @@ abstract class BaseModel implements IModel
 	 */
 	public function getContent()
 	{
-		return $this->readContentHanlder->getContent();
+		return $this->readContentHanlder->getContent($this->_id);
 	}
 	/**
 	 * @param array $array update the node Content
@@ -115,7 +115,7 @@ abstract class BaseModel implements IModel
 	 */
 	public function setContent(array $data)
 	{
-		return $this->writeContentHandler->setContent();
+		return $this->writeContentHandler->setContent($this->_id,['content' => $this->content]);
 	}
 }
 ?>

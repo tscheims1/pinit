@@ -9,9 +9,7 @@
  
 $path = dirname(__DIR__);
 
-require_once $path.'/Core/Model/IModel.php';
-require_once $path.'/Core/Model/BaseModel.php';
-require_once $path.'/Model/TextModel.php';
+require_once $path.'/SetUp/functions.php';
 
 use Model\TextModel;
 

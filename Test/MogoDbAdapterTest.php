@@ -9,14 +9,7 @@
  
 $path = dirname(__DIR__);
 
-require_once $path.'/Core/Model/IModel.php';
-require_once $path.'/Core/Model/BaseModel.php';
-require_once $path.'/Model/TextModel.php';
-require_once $path.'/Core/Factory/BaseFactory.php';
-require_once $path.'/Core/Factory/ModelFactory.php';
-require_once $path.'/Core/Factory/Exception/FactoryException.php';
-require_once $path.'/Core/Db/BaseDbAdapter.php';
-require_once $path.'/Core/Db/MongoDbAdapter/MongoDbAdapter.php';
+require_once $path.'/SetUp/functions.php';
 
 use Core\Db\MongoDbAdapter\MongoDbAdapter;
 

@@ -9,13 +9,17 @@
  
 $path = dirname(__DIR__);
 
+require_once $path.'/SetUp/functions.php';
+/* 	
 require_once $path.'/Core/Model/IModel.php';
 require_once $path.'/Core/Model/BaseModel.php';
 require_once $path.'/Model/TextModel.php';
 require_once $path.'/Core/Factory/BaseFactory.php';
 require_once $path.'/Core/Factory/ModelFactory.php';
 require_once $path.'/Core/Factory/Exception/FactoryException.php';
-
+require_once $path.'/Core/ContentHandler/Exception/ContentHandlerException.php';
+require_once $path.'/Core/ContentHandler/BaseContentHandler.php';
+require_once $path.'/ContentHandler/MongoDbContentHandler.php';*/
 
 use Core\Factory\ModelFactory;
 
