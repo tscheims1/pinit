@@ -146,6 +146,7 @@ class MongoDbAdapterTest extends PHPUnit_Framework_TestCase
 		}
 		$textModel2 = new \Model\TextModel($dbArr[0]);
 		$this->assertEquals($textModel2,$textModel);
+		$this->assertEquals($textModel2->toArray(),$textModel->toArray());
 		
 	}
 	public function testDeleteModel()
@@ -179,10 +180,8 @@ class MongoDbAdapterTest extends PHPUnit_Framework_TestCase
 		{
 			$dbArr[] = $ele;
 		
-		}
-		
+		}	
 		$this->assertSame($dbArr,[]);
-	
 	}
 	
 }
