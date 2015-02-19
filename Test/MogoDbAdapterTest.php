@@ -112,11 +112,77 @@ class MongoDbAdapterTest extends PHPUnit_Framework_TestCase
 									 ]);
 		$this->assertEquals($ele3,$ele2);
 		$this->assertNotEquals($ele3,null);
-									
+		
+	}
+	public function testInsertModelMethod()
+	{
+		/*
+		 * tidy up the database
+		 */
+		$mongo = new \MongoClient();
+		$db = $mongo->test;
+		$db->node->remove();
 		
 		
+		$mongoDbAdapter = new MongoDbAdapter();
+		$mongoDbAdapter->setUp(['db' => 'test']);
 		
+		$array = [	
+				'children' => null,
+				'parents' => null,
+				'type' => 'Model.TextModel', 
+				'_id' => new \MongoId(),
+				'tags' => [['name' => 'haus'],['name' => 'balkon']],
+				'content' => 'text text text'];
+		$textModel = new \Model\TextModel($array);
 		
+		$mongoDbAdapter->insertModel($textModel->toArray());
+		
+		$cursor = $db->node->find(['_id' => $array['_id']]);
+		$dbArr =[];
+		foreach($cursor as $ele)
+		{
+			$dbArr[] = $ele;	
+		}
+		$textModel2 = new \Model\TextModel($dbArr[0]);
+		$this->assertEquals($textModel2,$textModel);
+		
+	}
+	public function testDeleteModel()
+	{
+		/*
+		 * tidy up the database
+		 */
+		$mongo = new \MongoClient();
+		$db = $mongo->test;
+		$db->node->remove();
+		
+		$mongoDbAdapter = new MongoDbAdapter();
+		$mongoDbAdapter->setUp(['db' => 'test']);
+		
+		$array = [	
+				'children' => null,
+				'parents' => null,
+				'type' => 'Model.TextModel', 
+				'_id' => new \MongoId(),
+				'tags' => [['name' => 'haus'],['name' => 'balkon']],
+				'content' => 'text text text'];
+		$textModel = new \Model\TextModel($array);
+		
+		$mongoDbAdapter->insertModel($textModel->toArray());
+		
+		$mongoDbAdapter->deleteModel($array['_id']);
+		
+		$cursor = $db->node->find(['_id' => $array['_id']]);	
+		$dbArr = [];
+		foreach($cursor as $ele)
+		{
+			$dbArr[] = $ele;
+		
+		}
+		
+		$this->assertSame($dbArr,[]);
+	
 	}
 	
 }
