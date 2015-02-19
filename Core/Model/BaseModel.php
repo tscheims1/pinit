@@ -72,9 +72,9 @@ abstract class BaseModel implements IModel
 		 * initialize content handler
 		 * TODO: set config and handlerType dynamic
 		 */ 
-		$this->readContentHandler = new \ContentHandler\MongoDbContentHandler(['db' => 'node']);
-		$this->writeContentHandler = new \ContentHandler\MongoDbContentHandler(['db' => 'node']);
-		$this->deleteContentHandler = new \ContentHandler\MongoDbContentHandler(['db' => 'node']);
+		$this->readContentHandler = new \ContentHandler\MongoDbContentHandler(['db' => 'test']);
+		$this->writeContentHandler = new \ContentHandler\MongoDbContentHandler(['db' => 'test']);
+		$this->deleteContentHandler = new \ContentHandler\MongoDbContentHandler(['db' => 'test']);
 		
 		if($data !== null)
 			$this->toObject($data);
